@@ -5,6 +5,16 @@ import org.junit.jupiter.api.Test
  */
 class SudokuTest {
 
+    val sudokuParser = SudokuFileParser("src/test/resources/puzzles0_kaggle", 2)
+
+    @Test
+    fun test_sudokuInsert(){
+        sudokuParser.forEachSudoku {
+            val sudoku = Sudoku(it)
+            sudoku.toString() shouldBe it.replace(".", "0")
+        }
+    }
+
     @Test
     fun test_emptySudokuIsFilledWithZeros(){
         val sudoku = Sudoku()
